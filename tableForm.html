@@ -47,25 +47,20 @@ form.addEventListener('submit', (e) => {
 
     // Envoyer les données en JSON avec fetch
     fetch(scriptURL, {
-        method: 'POST',
-        body: JSON.stringify(formObject),  // Conversion des données en JSON
-        headers: {
-            'Content-Type': 'application/json',  // Déclaration du type de contenu comme JSON
-        },
-    })
-    .then(response => response.text())  // Lire la réponse comme du texte
-    .then((text) => {
-        console.log('Réponse du serveur :', text);  // Afficher la réponse dans la console
-        if (text.includes('correctamente')) {
-            alert('¡Datos enviados correctamente a Google Sheets!');
-        } else {
-            alert('Erreur lors de l\'envoi des données à Google Sheets : ' + text);
-        }
-    })
-    .catch(error => {
-        console.error('Erreur lors de l\'envoi:', error);  // Log les erreurs éventuelles dans la console
-        alert('Erreur lors de l\'envoi des données à Google Sheets.');
-    });
+    method: 'POST',
+    body: JSON.stringify(formObject),
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    mode: 'no-cors'  // Ajoute cette option
+})
+.then(() => {
+    alert('¡Datos enviados correctamente a Google Sheets!');
+})
+.catch(error => {
+    console.error('Erreur lors de l\'envoi:', error);
+    alert('Erreur lors de l\'envoi des données à Google Sheets.');
+});
 });
 
     </script>

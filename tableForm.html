@@ -46,21 +46,15 @@ form.addEventListener('submit', (e) => {
     formData.forEach((value, key) => formObject[key] = value);
 
     // Envoyer les données en JSON avec fetch
-    fetch(scriptURL, {
-    method: 'POST',
-    body: JSON.stringify(formObject),
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    mode: 'no-cors'  // Ajoute cette option
-})
-.then(() => {
-    alert('¡Datos enviados correctamente a Google Sheets!');
-})
-.catch(error => {
-    console.error('Erreur lors de l\'envoi:', error);
-    alert('Erreur lors de l\'envoi des données à Google Sheets.');
+    fetch('https://script.google.com/macros/s/AKfycbxnl-uVbaq2yYln5wwQoD5kuOw_lzrzhtqunZFvlZ-0/dev', {
+  method: 'POST',
+  mode: 'no-cors',
+  body: JSON.stringify(data),
+  headers: {
+    'Content-Type': 'application/json'
+  }
 });
+
 });
 
     </script>
